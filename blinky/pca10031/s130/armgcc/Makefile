@@ -2,7 +2,7 @@ PROJECT_NAME     := blinky_pca10031_s130
 TARGETS          := nrf51422_xxac
 OUTPUT_DIRECTORY := _build
 
-SDK_ROOT := ../../../../../..
+SDK_ROOT ?= ../../../../../..
 PROJ_DIR := ../../..
 
 $(OUTPUT_DIRECTORY)/nrf51422_xxac.out: \
@@ -154,7 +154,7 @@ CFLAGS +=  -Wall -Werror -O3 -g3
 CFLAGS += -mfloat-abi=soft
 # keep every function in separate section, this allows linker to discard unused ones
 CFLAGS += -ffunction-sections -fdata-sections -fno-strict-aliasing
-CFLAGS += -fno-builtin --short-enums 
+CFLAGS += -fno-builtin --short-enums
 
 # C++ flags common to all targets
 CXXFLAGS += \
@@ -205,7 +205,7 @@ flash: $(OUTPUT_DIRECTORY)/nrf51422_xxac.hex
 # Flash softdevice
 flash_softdevice:
 	@echo Flashing: s130_nrf51_2.0.1_softdevice.hex
-	nrfjprog --program $(SDK_ROOT)/components/softdevice/s130/hex/s130_nrf51_2.0.1_softdevice.hex -f nrf51 --sectorerase 
+	nrfjprog --program $(SDK_ROOT)/components/softdevice/s130/hex/s130_nrf51_2.0.1_softdevice.hex -f nrf51 --sectorerase
 	nrfjprog --reset -f nrf51
 
 erase:

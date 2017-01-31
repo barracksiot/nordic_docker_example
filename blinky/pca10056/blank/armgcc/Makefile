@@ -2,7 +2,7 @@ PROJECT_NAME     := blinky_pca10056
 TARGETS          := nrf52840_xxaa
 OUTPUT_DIRECTORY := _build
 
-SDK_ROOT := ../../../../../..
+SDK_ROOT ?= ../../../../../..
 PROJ_DIR := ../../..
 
 $(OUTPUT_DIRECTORY)/nrf52840_xxaa.out: \
@@ -149,7 +149,7 @@ CFLAGS +=  -Wall -Werror -O3 -g3
 CFLAGS += -mfloat-abi=hard -mfpu=fpv4-sp-d16
 # keep every function in separate section, this allows linker to discard unused ones
 CFLAGS += -ffunction-sections -fdata-sections -fno-strict-aliasing
-CFLAGS += -fno-builtin --short-enums 
+CFLAGS += -fno-builtin --short-enums
 
 # C++ flags common to all targets
 CXXFLAGS += \
@@ -172,7 +172,7 @@ LDFLAGS += -Wl,--gc-sections
 LDFLAGS += --specs=nano.specs -lc -lnosys
 
 
-.PHONY: $(TARGETS) default all clean help flash 
+.PHONY: $(TARGETS) default all clean help flash
 
 # Default target - first one defined
 default: nrf52840_xxaa
