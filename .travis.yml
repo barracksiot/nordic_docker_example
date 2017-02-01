@@ -7,7 +7,6 @@ install:
   - docker pull barracksiot/nrf5_sdk_docker:12.2.0
 
 script:
-  - printenv
   - 'docker run --rm -w $TRAVIS_BUILD_DIR -v $TRAVIS_BUILD_DIR:$TRAVIS_BUILD_DIR:rw barracksiot/nrf5_sdk_docker:12.2.0 /bin/bash -c
   "make -C blinky/pca10028/blank/armgcc clean default && mv blinky/pca10028/blank/armgcc/_build/nrf51422_xxac.hex blinky_pca10028.hex &&
   make -C blinky/pca10028/s130/armgcc clean default && mv blinky/pca10028/s130/armgcc/_build/nrf51422_xxac.hex blinky_pca10028_s130.hex &&
